@@ -41,7 +41,7 @@ import ConforMation from "../../components/conformation/Conformation"
 
 export default function Page() {
   
-  const [formStep , setFormStep] = React.useState(1)
+  const [formStep , setFormStep] = React.useState(0)
   const [isRegistrationSuccess , setRegistration] = React.useState(false)
   const [userData , setUserData] = React.useState<{_id:string , phone:string}>()
   const [formSubmit , setFormSubmit ] = React.useState(false)
@@ -51,12 +51,12 @@ export default function Page() {
       address:"AGARTALA",
       board:"TBSE",
       Class:'1',
-      email:"j@gmai.com",
-      name:"JOydeep Debnath",
+      email:"",
+      name:"",
       promoter:"false",
-      school:"Madhuna Nor akdjflsdf",
+      school:"",
       referalCode:"",
-      phone:"999999999"
+      phone:""
 },
 
   })
@@ -347,8 +347,10 @@ export default function Page() {
           const schoolState  = form.getFieldState("name")
           const phoneState  = form.getFieldState("phone")
           if((!nameState.isDirty || nameState.invalid) && (!emailState.isDirty || emailState.invalid)  && (!schoolState.isDirty || schoolState.invalid) && (!phoneState.isDirty || phoneState.invalid)) return;
+         else{
           toast.success("Fill next informations" , {position:"top-center"})
           setFormStep(1)
+         }
         }} variant="default" className={cn({
           "hidden":formStep === 1
         })}  >Next Step <ArrowRight/> </Button>
