@@ -22,7 +22,7 @@ import * as Forms from "react-hook-form"
 import { z } from "zod"
 import { registerSchema } from "../validator/auth"
 import { zodResolver } from "@hookform/resolvers/zod"
-
+import {motion} from 'framer-motion'
 
  
 import {
@@ -115,9 +115,11 @@ export default function Page() {
         
       })}>
 
-<div  className={cn(` space-y-3 transition-prop translate-x-0`,{
-"translate-x-[-110%]":formStep ===1 
-})}>
+<motion.div  className={cn(` space-y-3 `)} animate={
+  {
+    translateX:`-${formStep * 100}%`
+  }
+}>
   
         {/* Name */}
         <FormField
@@ -179,7 +181,8 @@ export default function Page() {
             </FormItem>
           )}
         />
-        <FormField
+
+<FormField
           control={form.control}
           name="board"
           render={({ field }) => (
@@ -201,15 +204,14 @@ export default function Page() {
             </FormItem>
           )}
         />
-
-
         
-</div>
-<div className={cn(`  mx space-y-3 transition-prop translate-x-[110%] absolute top-0 left-0 right-0 bottom-0 overflow-x-auto`,{
-"translate-x-0":formStep ===1
-})}>
+</motion.div>
+<motion.div className={cn(`  absolute top-0 right-0 left-0 space-y-3 `)} animate={{
+  translateX:`${100 - formStep * 100}%`
+}}>
   
 {/* Board */}
+
 
 
         {/* Current Class */}
@@ -240,7 +242,7 @@ export default function Page() {
           name="address"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Want to be our Student Ambassador?</FormLabel>
+              <FormLabel>Are you interested to school promoter</FormLabel>
               <FormControl>
               <Select onValueChange={field.onChange} defaultValue={"ARTS"}>
                   <SelectTrigger >
@@ -323,11 +325,11 @@ export default function Page() {
             </FormItem>
           )}
         />
-        </div>
+        </motion.div>
         <div className={cn("bottom-0",{
           "absolute":formStep ===1 
         })}>
-        <div className={cn(`flex gap-[8.2rem]`,{
+        <div className={cn(`flex gap-[8.5rem]`,{
           "hidden":formStep === 0
         })}>
         <Button type="button" onClick={()=>{

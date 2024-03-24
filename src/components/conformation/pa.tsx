@@ -41,7 +41,7 @@ import ConforMation from "../../components/conformation/Conformation"
 
 export default function Page() {
   
-  const [formStep , setFormStep] = React.useState(1)
+  const [formStep , setFormStep] = React.useState(0)
   const [isRegistrationSuccess , setRegistration] = React.useState(false)
   const [userData , setUserData] = React.useState<{_id:string , phone:string}>()
   const [formSubmit , setFormSubmit ] = React.useState(false)
@@ -51,12 +51,12 @@ export default function Page() {
       address:"AGARTALA",
       board:"TBSE",
       Class:'1',
-      email:"j@gmai.com",
-      name:"JOydeep Debnath",
+      email:"j@gmail.com",
+      name:"Joydeep",
       promoter:"false",
-      school:"Madhuna Nor akdjflsdf",
-      referalCode:"",
-      phone:"999999999"
+      school:"Madhuban Ranir Khamar",
+      referalCode:"8888888888",
+      phone:"883"
 },
 
   })
@@ -111,12 +111,12 @@ export default function Page() {
 
      <Form {...form} >
       <form  className={cn(`space-y-2 overflow-hidden relative`,{
-        "h-[30rem]":formStep ===1,
+        "h-full":formStep ===1,
         
       })}>
 
-<div  className={cn(` space-y-3 transition-prop translate-x-0`,{
-"translate-x-[-110%]":formStep ===1 
+<div  className={cn(`space-y-3 `,{
+"hidden":formStep ===1
 })}>
   
         {/* Name */}
@@ -179,7 +179,15 @@ export default function Page() {
             </FormItem>
           )}
         />
-        <FormField
+
+        
+</div>
+<div className={cn(`mx space-y-3 `,{
+"hidden":formStep ===0
+})}>
+  
+{/* Board */}
+<FormField
           control={form.control}
           name="board"
           render={({ field }) => (
@@ -201,15 +209,6 @@ export default function Page() {
             </FormItem>
           )}
         />
-
-
-        
-</div>
-<div className={cn(`  mx space-y-3 transition-prop translate-x-[110%] absolute top-0 left-0 right-0 bottom-0 overflow-x-auto`,{
-"translate-x-0":formStep ===1
-})}>
-  
-{/* Board */}
 
 
         {/* Current Class */}
@@ -240,7 +239,7 @@ export default function Page() {
           name="address"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Want to be our Student Ambassador?</FormLabel>
+              <FormLabel>Are you interested to school promoter</FormLabel>
               <FormControl>
               <Select onValueChange={field.onChange} defaultValue={"ARTS"}>
                   <SelectTrigger >
@@ -268,7 +267,7 @@ export default function Page() {
           name="promoter"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Are you interested to school promoter</FormLabel>
+              <FormLabel>Want to be our student Ambassador?</FormLabel>
               <FormControl>
               <Select onValueChange={field.onChange} defaultValue={"false"}>
                   <SelectTrigger >
@@ -324,10 +323,8 @@ export default function Page() {
           )}
         />
         </div>
-        <div className={cn("bottom-0",{
-          "absolute":formStep ===1 
-        })}>
-        <div className={cn(`flex gap-[8.2rem]`,{
+        <div >
+        <div className={cn(`flex items-center justify-between`,{
           "hidden":formStep === 0
         })}>
         <Button type="button" onClick={()=>{
@@ -347,8 +344,10 @@ export default function Page() {
           const schoolState  = form.getFieldState("name")
           const phoneState  = form.getFieldState("phone")
           if((!nameState.isDirty || nameState.invalid) && (!emailState.isDirty || emailState.invalid)  && (!schoolState.isDirty || schoolState.invalid) && (!phoneState.isDirty || phoneState.invalid)) return;
-          toast.success("Fill next informations" , {position:"top-center"})
+          else{
+            toast.success("Fill next informations" , {position:"top-center"})
           setFormStep(1)
+          }
         }} variant="default" className={cn({
           "hidden":formStep === 1
         })}  >Next Step <ArrowRight/> </Button>
