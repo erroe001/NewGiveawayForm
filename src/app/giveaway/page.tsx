@@ -39,7 +39,7 @@ import { ArrowLeft, ArrowRight, Square, SquareMousePointerIcon } from "lucide-re
 import toast, { Toaster } from "react-hot-toast"
 import ConforMation from "../../components/conformation/Conformation"
 
-export default function page() {
+export default function Page() {
   
   const [formStep , setFormStep] = React.useState(0)
   const [isRegistrationSuccess , setRegistration] = React.useState(false)
