@@ -1,12 +1,7 @@
 "use client"
 
-import { ModeToggle } from "@/components/themeTougle";
-import { Button } from "@/components/ui/button"
-import MySvg from '../../public/c.svg'
 import Image from "next/image";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-
 export default function Home() {
 
   return (

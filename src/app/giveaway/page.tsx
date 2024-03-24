@@ -12,7 +12,6 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import {
   Select,
   SelectContent,
@@ -36,16 +35,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import Link from "next/link"
 import { cn } from '../../lib/utils';
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import toast, { Toaster } from "react-hot-toast"
-import { useRouter } from "next/navigation"
 import ConforMation from "../../components/conformation/Conformation"
 
 export default function page() {
  
-  const router= useRouter()
   const [formStep , setFormStep] = React.useState(1)
   const [isRegistrationSuccess , setRegistration] = React.useState(false)
   const [userData , setUserData] = React.useState<{_id:string , phone:string}>()
@@ -77,7 +73,6 @@ export default function page() {
       toast.success("Successfully Enter in the giveaway", {
         position:"top-center"
       })
-      router.push("/conformation")
     }
     if(Data.success === false){
       toast.error(Data.message , {
