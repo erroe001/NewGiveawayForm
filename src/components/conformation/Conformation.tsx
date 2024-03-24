@@ -3,7 +3,6 @@
 import { Input } from "@/components/ui/input"
 import { ArrowRight, LinkIcon } from "lucide-react"
 import Image from "next/image"
-import dotenv from 'dotenv'
 import Link from "next/link"
 import { OWN_WEB_URL } from "@/app/constants"
 import toast, { Toaster } from "react-hot-toast"

@@ -42,7 +42,7 @@ import ConforMation from "../../components/conformation/Conformation"
 
 export default function page() {
  
-  const [formStep , setFormStep] = React.useState(1)
+  const [formStep , setFormStep] = React.useState(0)
   const [isRegistrationSuccess , setRegistration] = React.useState(false)
   const [userData , setUserData] = React.useState<{_id:string , phone:string}>()
   const form =  useForm<z.infer<typeof registerSchema>>({
@@ -52,9 +52,9 @@ export default function page() {
       board:"TBSE",
       Class:'1',
       email:"",
-      name:"Joydeep",
+      name:"",
       promoter:"false",
-      school:"madhuban Ranir Khamar",
+      school:"",
       referalCode:"0000000000",
       phone:""
 },
