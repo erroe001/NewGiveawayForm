@@ -1,5 +1,5 @@
 "use client"
-import  React, { useState } from "react"
+import  React from "react"
 
 
 import { Button } from "@/components/ui/button"
@@ -18,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { useForm } from "react-hook-form"
+import * as Forms from "react-hook-form"
 import { z } from "zod"
 import { registerSchema } from "../validator/auth"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -41,11 +41,11 @@ import ConforMation from "../../components/conformation/Conformation"
 
 export default function page() {
   
-  const [formStep , setFormStep] = useState(0)
-  const [isRegistrationSuccess , setRegistration] = useState(false)
-  const [userData , setUserData] = useState<{_id:string , phone:string}>()
-  const [formSubmit , setFormSubmit ] = useState(false)
-  const form =  useForm<z.infer<typeof registerSchema>>({
+  const [formStep , setFormStep] = React.useState(0)
+  const [isRegistrationSuccess , setRegistration] = React.useState(false)
+  const [userData , setUserData] = React.useState<{_id:string , phone:string}>()
+  const [formSubmit , setFormSubmit ] = React.useState(false)
+  const form =  Forms.useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues:{
       address:"AGARTALA",
