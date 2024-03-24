@@ -36,15 +36,16 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { cn } from '../../lib/utils';
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import { ArrowLeft, ArrowRight, Square, SquareMousePointerIcon } from "lucide-react"
 import toast, { Toaster } from "react-hot-toast"
 import ConforMation from "../../components/conformation/Conformation"
 
 export default function page() {
- 
+  
   const [formStep , setFormStep] = React.useState(0)
   const [isRegistrationSuccess , setRegistration] = React.useState(false)
   const [userData , setUserData] = React.useState<{_id:string , phone:string}>()
+  const [formSubmit , setFormSubmit ] = React.useState(false)
   const form =  useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues:{
@@ -61,24 +62,37 @@ export default function page() {
 
   })
  async function onSubmit(values: z.infer<typeof registerSchema>) {
-    const Response = await fetch("https://giveway-backend.onrender.com/api/v1/SignupUser", {
-      method: "POST",
-      body: JSON.stringify(values),
-      headers: { "Content-Type": "application/json" },
-    });
-    const Data = await Response.json();
-    if(Data.success === true){
-      setUserData(Data.data)
-      setRegistration(true)
-      toast.success("Successfully Enter in the giveaway", {
-        position:"top-center"
-      })
-    }
-    if(Data.success === false){
-      toast.error(Data.message , {
-        position:"top-center"
-      })
-    }
+  setFormSubmit(true)
+  toast.success("Request submit please wait" , {
+    position:"top-center"
+  })
+   try {
+     const Response = await fetch("https://giveway-backend.onrender.com/api/v1/SignupUser", {
+       method: "POST",
+       body: JSON.stringify(values),
+       headers: { "Content-Type": "application/json" },
+     });
+     const Data = await Response.json();
+     if(Data.success === true){
+       setUserData(Data.data)
+       setRegistration(true)
+       toast.success("Successfully Enter in the giveaway", {
+         position:"top-center"
+       })
+     }
+     if(Data.success === false){
+       toast.error(Data.message , {
+         position:"top-center"
+       })
+     }
+  setFormSubmit(false)
+   } catch (error) {
+     setFormSubmit(false)
+    toast.error("Something went wrong please try again later" , {
+      position:"top-center"
+    })
+    
+   }
   }
 
 
@@ -320,7 +334,7 @@ export default function page() {
           setFormStep(0)
         }} ><ArrowLeft/> Back</Button>
 
-          <Button   type="submit" onClick={form.handleSubmit(onSubmit)} >Submit</Button>
+          <Button disabled={formSubmit? true :false}  type="submit" onClick={form.handleSubmit(onSubmit)} >{formSubmit ?  "Wait" :"Submit "}</Button>
         
         </div>
        
