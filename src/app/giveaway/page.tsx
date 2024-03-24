@@ -1,5 +1,5 @@
 "use client"
-import  React from "react"
+import  React, { useState } from "react"
 
 
 import { Button } from "@/components/ui/button"
@@ -41,10 +41,10 @@ import ConforMation from "../../components/conformation/Conformation"
 
 export default function page() {
   
-  const [formStep , setFormStep] = React.useState(0)
-  const [isRegistrationSuccess , setRegistration] = React.useState(false)
-  const [userData , setUserData] = React.useState<{_id:string , phone:string}>()
-  const [formSubmit , setFormSubmit ] = React.useState(false)
+  const [formStep , setFormStep] = useState(0)
+  const [isRegistrationSuccess , setRegistration] = useState(false)
+  const [userData , setUserData] = useState<{_id:string , phone:string}>()
+  const [formSubmit , setFormSubmit ] = useState(false)
   const form =  useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues:{
