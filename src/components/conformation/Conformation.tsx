@@ -57,7 +57,7 @@ function ConforMation(props:Tprops) {
       <div className="shareOptions">
 
         <h1 className="text-2xl text-blue-900 text-center mb-4 ">Share via</h1>
-        <h1 className="text-center text-black text-xl md:text-3xl mt-4 mb-8">{counter=== 3 ? "Your task is done please share with your friends to win prizes":<>Your shared  {counter} time out of 3`</>}</h1>
+        <h1 className="text-center text-black text-xl md:text-3xl mt-4 mb-8">{counter=== 3 ? "Your task is done please share with your friends to win prizes":<>Your shared  {counter} time out of 3</>}</h1>
         <div className="options grid items-center justify-center grid-cols-3 gap-10">
           {Images.map((item , index)=>(
             <div className="text-center justify-center"key={index}>

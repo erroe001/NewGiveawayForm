@@ -22,7 +22,7 @@
 // import { z } from "zod"
 // import { registerSchema } from "../validator/auth"
 // import { zodResolver } from "@hookform/resolvers/zod"
-// import {motion} from 'framer-motion'
+
 
  
 // import {
@@ -41,7 +41,7 @@
 
 // export default function Page() {
   
-//   const [formStep , setFormStep] = React.useState(1)
+//   const [formStep , setFormStep] = React.useState(0)
 //   const [isRegistrationSuccess , setRegistration] = React.useState(false)
 //   const [userData , setUserData] = React.useState<{_id:string , phone:string}>()
 //   const [formSubmit , setFormSubmit ] = React.useState(false)
@@ -51,12 +51,12 @@
 //       address:"AGARTALA",
 //       board:"TBSE",
 //       Class:'1',
-//       email:"j@gmai.com",
-//       name:"JOydeep Debnath",
+//       email:"",
+//       name:"",
 //       promoter:"false",
-//       school:"Madhuna Nor akdjflsdf",
+//       school:"",
 //       referalCode:"",
-//       phone:"999999999"
+//       phone:""
 // },
 
 //   })
@@ -115,11 +115,9 @@
         
 //       })}>
 
-// <motion.div  className={cn(` space-y-3 `)} animate={
-//   {
-//     translateX:`-${formStep * 100}%`
-//   }
-// }>
+// <div  className={cn(` space-y-3 transition-prop translate-x-0`,{
+// "translate-x-[-110%]":formStep ===1 
+// })}>
   
 //         {/* Name */}
 //         <FormField
@@ -181,8 +179,7 @@
 //             </FormItem>
 //           )}
 //         />
-
-// <FormField
+//         <FormField
 //           control={form.control}
 //           name="board"
 //           render={({ field }) => (
@@ -204,14 +201,15 @@
 //             </FormItem>
 //           )}
 //         />
+
+
         
-// </motion.div>
-// <motion.div className={cn(`  absolute top-0 right-0 left-0 space-y-3 `)} animate={{
-//   translateX:`${100 - formStep * 100}%`
-// }}>
+// </div>
+// <div className={cn(`  mx space-y-3 transition-prop translate-x-[110%] absolute top-0 left-0 right-0 bottom-0`,{
+// "translate-x-0":formStep ===1
+// })}>
   
 // {/* Board */}
-
 
 
 //         {/* Current Class */}
@@ -242,7 +240,7 @@
 //           name="address"
 //           render={({ field }) => (
 //             <FormItem>
-//               <FormLabel>Are you interested to school promoter</FormLabel>
+//               <FormLabel>Want to be our Student Ambassador?</FormLabel>
 //               <FormControl>
 //               <Select onValueChange={field.onChange} defaultValue={"ARTS"}>
 //                   <SelectTrigger >
@@ -325,11 +323,11 @@
 //             </FormItem>
 //           )}
 //         />
-//         </motion.div>
+//         </div>
 //         <div className={cn("bottom-0",{
 //           "absolute":formStep ===1 
 //         })}>
-//         <div className={cn(`flex gap-[8.5rem]`,{
+//         <div className={cn(`flex gap-[8.2rem]`,{
 //           "hidden":formStep === 0
 //         })}>
 //         <Button type="button" onClick={()=>{
@@ -349,8 +347,10 @@
 //           const schoolState  = form.getFieldState("name")
 //           const phoneState  = form.getFieldState("phone")
 //           if((!nameState.isDirty || nameState.invalid) && (!emailState.isDirty || emailState.invalid)  && (!schoolState.isDirty || schoolState.invalid) && (!phoneState.isDirty || phoneState.invalid)) return;
+//          else{
 //           toast.success("Fill next informations" , {position:"top-center"})
 //           setFormStep(1)
+//          }
 //         }} variant="default" className={cn({
 //           "hidden":formStep === 1
 //         })}  >Next Step <ArrowRight/> </Button>
